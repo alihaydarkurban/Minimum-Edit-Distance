@@ -1,3 +1,7 @@
+MAX_LENGTH = 15
+TOP_FIVE = 5
+
+
 class MostSimilarWord:
     def __init__(self, index=-1, word="?", cost=30):
         self.index = index
@@ -18,8 +22,8 @@ def read_random_file():
     words = []
     for line in read_line:
         line = line[: -1]
-        if len(line) > 15:
-            line = line[: 15]
+        if len(line) > MAX_LENGTH:
+            line = line[: MAX_LENGTH]
         words.append(line)
 
     file_handle.close()
@@ -33,70 +37,62 @@ def get_word():
         print("You must enter non-empty word!\nProgram is terminating...")
         exit()
 
-    elif len(word) > 15:
-        word = word[: 15]
+    elif len(word) > MAX_LENGTH:
+        word = word[: MAX_LENGTH]
 
     return word
 
 
-def run_min_edit_distance_for_all(most_similar_word_list, word, file_words):
-
-    for i in range(5):
-        most_similar_word_list[i].print_msw()
-        print("=========================================")
-
-    for i in range(len(file_words)):
-        cost = min_edit_distance(word, file_words[i], i)
-
-        if cost < most_similar_word_list[4].cost:
-            most_similar_word_list.pop()
-            new_word = MostSimilarWord(i, file_words[i], cost)
-            most_similar_word_list.append(new_word)
-
-        most_similar_word_list = sorted(most_similar_word_list, key=lambda x: x.cost)
-
-    for i in range(5):
-        most_similar_word_list[i].print_msw()
-        print("=========================================")
-
-
-def min_edit_distance(word_1, word_2, index):
-    print("main word :", word_1, "with length : ", len(word_1))
-    print("other word :", word_2, "with length : ", len(word_2))
+def min_edit_distance(word_1, words_of_file, top_5_words):
+    number_of_words = len(words_of_file)
+    table = [[[0 for x in range(MAX_LENGTH + 1)] for y in range(MAX_LENGTH + 1)] for z in range(number_of_words)]
 
     len_word_1 = len(word_1)  # vertical word |
-    len_word_2 = len(word_2)  # horizontal word -
+    len_word_2 = 0  # horizontal word -
 
-    table = [[0 for i in range(len_word_2 + 1)] for i in range(len_word_1 + 1)]
-    table_initialization(table, len_word_1, len_word_2)
+    table_initialization(table, number_of_words)
 
-    for i in range(1, len_word_1 + 1):
-        for j in range(1, len_word_2 + 1):
-            if word_1[i - 1] == word_2[j - 1]:
-                substitution_cost = 0
-            else:
-                substitution_cost = 2
+    for k in range(number_of_words):
+        word_2 = words_of_file[k]
+        len_word_2 = len(word_2)
 
-            table[i][j] = min(table[i][j - 1] + 1, table[i - 1][j] + 1, table[i - 1][j - 1] + substitution_cost)
+        for i in range(1, len_word_1 + 1):
+            for j in range(1, len_word_2 + 1):
+                if word_1[i - 1] == word_2[j - 1]:
+                    substitution_cost = 0
+                else:
+                    substitution_cost = 2
 
-    print_table(table)
-    print("word_2_index :", index)
-    return table[len_word_1][len_word_2]
+                table[k][i][j] = min(table[k][i][j - 1] + 1, table[k][i - 1][j] + 1,
+                                     table[k][i - 1][j - 1] + substitution_cost)
+
+        cost = table[k][i][j]
+        if cost < top_5_words[TOP_FIVE - 1].cost:
+            top_5_words.pop()
+            new_word = MostSimilarWord(k, word_2, cost)
+            top_5_words.append(new_word)
+
+        top_5_words = sorted(top_5_words, key=lambda x: x.cost)
+
+        print("Total Cost :", cost)
+        print("main word :", word_1)
+        print("other word :", word_2)
+        print_table(table[k])
+        print("*******************************************************")
+
+    return top_5_words
 
 
-def table_initialization(table, len_word_1, len_word_2):
-    for i in range(len_word_2 + 1):
-        table[0][i] = i
-    for j in range(len_word_1 + 1):
-        table[j][0] = j
+def table_initialization(table, word_of_file_count):
+    for k in range(word_of_file_count):
+        for j in range(MAX_LENGTH + 1):
+            table[k][0][j] = j
+        for i in range(MAX_LENGTH + 1):
+            table[k][i][0] = i
 
 
 def print_table(table):
     row = len(table)
-    column = len(table[0])
-    print("row :", row)
-    print("column :", column)
-
     for i in range(row):
         print(table[i])
 
@@ -111,6 +107,8 @@ if __name__ == '__main__':
     # print(random_words)
     # print(len(random_words))
 
-    most_similar_five_words = [MostSimilarWord() for i in range(5)]
+    most_similar_five_words = [MostSimilarWord() for i in range(TOP_FIVE)]
+    most_similar_five_words = min_edit_distance("ali", random_words, most_similar_five_words)
 
-    run_min_edit_distance_for_all(most_similar_five_words, "ali", random_words)
+    for i in range(TOP_FIVE):
+        most_similar_five_words[i].print_msw()
