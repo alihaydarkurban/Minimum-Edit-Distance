@@ -17,7 +17,7 @@ class MostSimilarWord:
 
 
 def read_random_file():
-    file_handle = open("Files/random_file_6.txt", "r", encoding='utf8')
+    file_handle = open("Files/random_file_5.txt", "r", encoding='utf8')
     read_line = file_handle.readlines()
     words = []
     for line in read_line:
@@ -93,7 +93,8 @@ def calculate_percentage(table, x):
                 if table[k][i][j] is None:
                     num_of_None = num_of_None + 1
 
-    total_usage = ((MAX_LENGTH + 1) * (MAX_LENGTH + 1) * x) - num_of_None
+    total_usage = ((MAX_LENGTH + 1) * (MAX_LENGTH + 1) * x) - num_of_None - (((2 * MAX_LENGTH) + 1) * x)
+    # total_usage = ((MAX_LENGTH + 1) * (MAX_LENGTH + 1) * x) - num_of_None
     percentage = (total_usage * 100.0) / ((MAX_LENGTH + 1) * (MAX_LENGTH + 1) * x)
 
     print("PERCENTAGE : ", percentage)
@@ -124,7 +125,21 @@ if __name__ == '__main__':
     # print(len(random_words))
 
     most_similar_five_words = [MostSimilarWord() for i in range(TOP_FIVE)]
-    most_similar_five_words = min_edit_distance("ali", random_words, most_similar_five_words)
+    most_similar_five_words = min_edit_distance("testedildi", random_words, most_similar_five_words)
 
     for i in range(TOP_FIVE):
         most_similar_five_words[i].print_msw()
+
+    # a = 4
+    # min_cost_dict = {i: 100 for i in range(10)}
+    #
+    # min_cost_dict = sorted(min_cost_dict.items(), key=lambda x: x[1])
+    #
+    # for i in range(10):
+    #     if min_cost_dict[i][0] == a:
+    #         print(min_cost_dict[i])
+
+    # a = [5, 10,1,4,6,7]
+    # a.sort()
+    # print(a)
+
