@@ -14,7 +14,7 @@ The classical edit distance algorithm efficiently finds the distance between giv
 The percentage of occupancy of the dynamic programming table gives us how the program is efficient.<br/>
 * Although [inefficient_min_edit_distance.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/inefficient_min_edit_distance.py) has a 3D array as a dynamic programming table, it is a classical version of the minimum edit distance algorithm. Even though the word has much more distance, the algorithm fills all the cells of the dynamic programming table. So, for all words, the percentage of occupancy of the dynamic programming table will always be %100.
 * [min_edit_distance.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/min_edit_distance.py) is the enhanced version of the minimum edit distance algorithm. It can stop filling the table cell if the distance is getting hihger. So, the percentage of occupancy of the dynamic programming table will not be %100. 
-* You can see the real comparison based on the percentage of occupancy of the dynamic programming table here.
+* You can see the real comparison based on the percentage of occupancy of the dynamic programming table [here](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/ComparisonReport.pdf).
 ***
 #### Dataset And Random Files
 * The folder with name [Files](https://github.com/alihaydarkurban/Minimum-Edit-Distance/tree/master/Files) is the place where I keep the dataset and the files that have 1000 words.
