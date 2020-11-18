@@ -32,6 +32,15 @@ These files are needed to test and compare the enhanced version and the basic ve
 #### Requirements 
 * It is a [PyCharm](https://www.jetbrains.com/pycharm/) project. So, you may use PyCharm to run it.
 * The version of the python interpreter is Python 3.7.5 and you can find it [here](https://www.python.org/downloads/).
+***
 #### Running 
 * [generate_random_files.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/generate_random_files.py) generates five random files. _(I have generated the files so, you do not need to run this file.)_
 * [inefficient_min_edit_distance.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/inefficient_min_edit_distance.py) and [min_edit_distance.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/min_edit_distance.py) want a word from the user and report the five most similar five words and the percentage of occupancy of the dynamic programming table.
+***
+![Static badge](https://img.shields.io/badge/love-coding-success.svg)
+![Static badge](https://img.shields.io/badge/dynamic-programming-yellow.svg)
+![Static badge](https://img.shields.io/badge/edit-distance-red.svg)
+![Static badge](https://img.shields.io/badge/computer-science-blue.svg)
+![Static badge](https://img.shields.io/badge/software-engineering-yellowgreen.svg)
+![Static badge](https://img.shields.io/badge/python-programming-blueviolet.svg)
+
