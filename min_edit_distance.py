@@ -101,7 +101,6 @@ def min_edit_distance(word_1, words_of_file, top_5_words):
 
                 # It checks if the cost of X was calculated. (cost of 1, cost of 2,.. cost of X)
                 if j == len_word_2:
-                    top_5_words = sorted(top_5_words, key=lambda x: x.cost)  # Sorts the similar words based on the cost.
                     can_min = abs(table[k][i][j] - (len_word_1 - i))  # Calculates the minimum cost that can be.
                     can_max = abs(table[k][i][j] + (len_word_1 - i))  # Calculates the maximum cost that can be.
 
@@ -127,6 +126,7 @@ def min_edit_distance(word_1, words_of_file, top_5_words):
                     # It checks if the can_min cost is bigger than the most similar five words costs.
                     if can_min > top_5_words[TOP_FIVE - 1].cost:
                         table[k][0][0] = EXPENSIVE_WORD  # EXPENSIVE_WORD = -1
+                    top_5_words = sorted(top_5_words, key=lambda x: x.cost)  # Sorts the similar words based on the cost.
 
     percentage_of_used_place = calculate_percentage(used_place_count, total_place)  # Calculate the percentage of used places.
     return top_5_words, percentage_of_used_place  # Returns the most similar five words and the percentage.
@@ -158,9 +158,12 @@ if __name__ == '__main__':
     random_file_names = ["Files/random_file_1.txt", "Files/random_file_2.txt",
                          "Files/random_file_3.txt", "Files/random_file_4.txt",
                          "Files/random_file_5.txt"]
-    random_words = read_random_file(random_file_names[4])
+    random_words = read_random_file(random_file_names[0])
     print("======================================================================")
     print("It is an ENHANCED version of minimum edit distance algorithm.")
+    print("======================================================================")
+    print("======================================================================")
+    print("Test File is :", random_file_names[0])
     print("======================================================================")
     main_word = get_word()
     most_similar_five_words = [MostSimilarWord() for i in range(TOP_FIVE)]

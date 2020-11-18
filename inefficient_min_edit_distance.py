@@ -133,9 +133,12 @@ if __name__ == '__main__':
     random_file_names = ["Files/random_file_1.txt", "Files/random_file_2.txt",
                          "Files/random_file_3.txt", "Files/random_file_4.txt",
                          "Files/random_file_5.txt"]
-    random_words = read_random_file(random_file_names[4])
+    random_words = read_random_file(random_file_names[0])
     print("======================================================================")
     print("It is an INEFFICIENT version of minimum edit distance algorithm.")
+    print("======================================================================")
+    print("======================================================================")
+    print("Test File is :", random_file_names[0])
     print("======================================================================")
     main_word = get_word()
     most_similar_five_words = [MostSimilarWord() for i in range(TOP_FIVE)]
