@@ -16,3 +16,22 @@ The percentage of occupancy of the dynamic programming table gives us how the pr
 * [min_edit_distance.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/min_edit_distance.py) is the enhanced version of the minimum edit distance algorithm. It can stop filling the table cell if the distance is getting hihger. So, the percentage of occupancy of the dynamic programming table will not be %100. 
 * You can see the real comparison based on the percentage of occupancy of the dynamic programming table here.
 ***
+#### Dataset And Random Files
+* The folder with name [Files](https://github.com/alihaydarkurban/Minimum-Edit-Distance/tree/master/Files) is the place where I keep the dataset and the files that have 1000 words.
+* The program with name [generate_random_files.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/generate_random_files.py) generates five random files which have 1000 words. The main dataset is [dataset.txt](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/Files/dataset.txt) and it includes around 1.1 million words.
+* [generate_random_files.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/generate_random_files.py) generates five random files which have 1000 words from the [dataset.txt](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/Files/dataset.txt). These random files are:
+  1. [random_file_1.txt](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/Files/random_file_1.txt)
+  2. [random_file_2.txt](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/Files/random_file_2.txt)
+  3. [random_file_3.txt](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/Files/random_file_3.txt)
+  4. [random_file_4.txt](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/Files/random_file_4.txt)
+  5. [random_file_5.txt](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/Files/random_file_5.txt)
+<br/>
+These files are needed to test and compare the enhanced version and the basic version of the minimum edit distance algorithm.
+
+***
+#### Requirements 
+* It is a [PyCharm](https://www.jetbrains.com/pycharm/) project. So, you may use PyCharm to run it.
+* The version of the python interpreter is Python 3.7.5 and you can find it [here](https://www.python.org/downloads/).
+#### Running 
+* [generate_random_files.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/generate_random_files.py) generates five random files. _(I have generated the files so, you do not need to run this file.)_
+* [inefficient_min_edit_distance.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/inefficient_min_edit_distance.py) and [min_edit_distance.py](https://github.com/alihaydarkurban/Minimum-Edit-Distance/blob/master/min_edit_distance.py) want a word from the user and report the five most similar five words and the percentage of occupancy of the dynamic programming table.
