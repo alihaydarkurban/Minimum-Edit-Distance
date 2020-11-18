@@ -71,12 +71,16 @@ def min_edit_distance(word_1, words_of_file, top_5_words):
 
     len_word_1 = len(word_1)  # vertical word |
     len_word_2 = 0  # horizontal word -
-    used_place_count = 0  # It is counter for the used places.
+    used_place_count = 0  # It is a counter for the used places.
     table_initialization(table, number_of_words)
+    total_place = 0  # It is the for the total number of all places for words.
+    # This loop finds the total number of places that can be used.
+    for word in words_of_file:
+        total_place = total_place + (len_word_1 * len(word))
 
-    # i (1,16) # It represents the main word
-    #     k (1000) # It represents the total number of the words in the file
-    #         j (1,16) # It represents a word which is in the file
+    # i (1,16) # It represents the main word.
+    #     k (1000) # It represents the total number of the words in the file.
+    #         j (1,16) # It represents a word which is in the file.
 
     for i in range(1, len_word_1 + 1):
         for k in range(number_of_words):
@@ -124,13 +128,13 @@ def min_edit_distance(word_1, words_of_file, top_5_words):
                     if can_min > top_5_words[TOP_FIVE - 1].cost:
                         table[k][0][0] = EXPENSIVE_WORD  # EXPENSIVE_WORD = -1
 
-    percentage_of_used_place = calculate_percentage(used_place_count, number_of_words)  # Calculate the percentage of used places.
+    percentage_of_used_place = calculate_percentage(used_place_count, total_place)  # Calculate the percentage of used places.
     return top_5_words, percentage_of_used_place  # Returns the most similar five words and the percentage.
 
 
 # It calculates the percentage of used places of the 3D table.
-def calculate_percentage(total_usage, number_of_words):
-    percentage_of_used_place = (total_usage * 100.0) / ((MAX_LENGTH + 1) * (MAX_LENGTH + 1) * number_of_words)
+def calculate_percentage(total_usage, total_place):
+    percentage_of_used_place = (total_usage * 100.0) / total_place
     return percentage_of_used_place
 
 
@@ -154,9 +158,9 @@ if __name__ == '__main__':
     random_file_names = ["Files/random_file_1.txt", "Files/random_file_2.txt",
                          "Files/random_file_3.txt", "Files/random_file_4.txt",
                          "Files/random_file_5.txt"]
-    random_words = read_random_file(random_file_names[1])
+    random_words = read_random_file(random_file_names[4])
     print("======================================================================")
-    print("It is an enhanced version of minimum edit distance algorithm.")
+    print("It is an ENHANCED version of minimum edit distance algorithm.")
     print("======================================================================")
     main_word = get_word()
     most_similar_five_words = [MostSimilarWord() for i in range(TOP_FIVE)]
